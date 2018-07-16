@@ -67,7 +67,6 @@ public class p696Interrupting {
     public static void main(String[] args) throws Exception
     {
         //test(new SleepBlocked());
-
         ExecutorService exec = Executors.newCachedThreadPool();
 
         ServerSocket server = new ServerSocket(9999);
