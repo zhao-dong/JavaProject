@@ -11,3 +11,27 @@ SynchronousQueue:
 直接交付方式还会将更多关于任务状态的信息反馈给生产者。当交付被接受时，它就知道消费者已经得到了任务，而不是简单地把任务放入一个队列——这种区别就好比将文件直接交给同事，还是将文件放到她的邮箱中并希望她能尽快拿到文件。
 因为SynchronousQueue没有存储功能，因此put和take会一直阻塞，直到有另一个线程已经准备好参与到交付过程中。仅当有足够多的消费者，并且总是有一个消费者准备好获取交付的工作时，才适合使用同步队列。
 
+免锁容器：
+CopyOnWriteArrayList
+CopyOnWriteArraySet
+ConcurrentHashMap, ConcurrentLinkedQueue，Collection.synchronizedMap,
+
+乐观锁,乐观加锁,
+从多线程并行计算乐观锁和悲观锁来讲，JAVA中的 lock、synchronized 属于悲观锁，即是在操作某数据的时候总是会认为多线程之间会相互干扰，
+属于阻塞式的加锁；Atomic系列则属于乐观锁系列，即当操作某一段数据的时候，线程之间是不会相互影响，采用非阻塞的模式，
+直到更新数据的时候才会进行版本的判断是否值已经进行了修改。
+.compareAndSet()
+public final boolean compareAndSet(int expect, int update)
+Atomically sets the value to the given updated value if the current value == the expected value.
+
+ReadWriteLock:
+不过要注意的是，如果有一个线程已经占用了读锁，则此时其他线程如果要申请写锁，则申请写锁的线程会一直等待释放读锁。如果有一个线程已经占用了写锁，则此时其他线程如果申请写锁或者读锁，则申请的线程会一直等待释放写锁。读锁和写锁是互斥的。
+
+Lock types:
+1.可重入(Reentrant)锁:如果锁具备可重入性，则称作为可重入锁。像synchronized和 ReentrantLock都是可重入锁，可重入性在我看来实际上表明了锁的分配机制：基于线程的分配，而不是基于方法调用的分配。举个简单的例子，当一 个线程执行到某个synchronized方法时，比如说method1，而在method1中会调用另外一个synchronized方法 method2，此时线程不必重新去申请锁，而是可以直接执行方法method2。
+2.可中断锁:
+　　可中断锁：顾名思义，就是可以相应中断的锁。
+　　在Java中，synchronized就不是可中断锁，而Lock是可中断锁。
+　　如果某一线程A正在执行锁中的代码，另一线程B正在等待获取该锁，可能由于等待时间过长，线程B不想等待了，想先处理其他事情，我们可以让它中断自己或者在别的线程中中断它，这种就是可中断锁。
+3.公平锁
+　　公平锁即尽量以请求锁的顺序来获取锁。比如同是有多个线程在等待一个锁，当这个锁被释放时，等待时间最久的线程（最先请求的线程）会获得该所，这种就是公平锁。
