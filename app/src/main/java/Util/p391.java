@@ -1,4 +1,5 @@
 //package Util;
+package p391;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,16 +31,24 @@ public class p391 {
     {
 
         //case_1
-        //Fruit[] fruits = new Apple[10];
-        //fruits[0] = new Apple();
-       // fruits[1] = new Jonathan();
 
-        //try {
-        //    fruits[0] = new Fruit();
-        //} catch (Exception e)
-        //{
-        //    System.out.println(e);
-        //}
+        /*
+        Fruit[] fruits = new Apple[10];
+        fruits[0] = new Apple();
+        fruits[1] = new Jonathan();
+
+
+        try {
+            fruits[0] = new Fruit();
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        */
+
+        /* case 1b */
+        //List<Fruit> list = new ArrayList<Apple>();
+        //can not compile
 
         /* case_2 */
         /*
